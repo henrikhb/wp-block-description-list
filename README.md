@@ -7,10 +7,18 @@ The plugin is still in the works, but is already ready to use in production.
 #### The descirption list block contains easy to use UI using gutenbergs default UI.
 ![Image of UI of block in backend](https://raw.githubusercontent.com/lassemt/wp-block-description-list/master/examples/example-backend.png)
 
-#### How the block looks in the frontend
+#### How the block look in the frontend
 ![Image of block in frontend](https://raw.githubusercontent.com/lassemt/wp-block-description-list/master/examples/example-frontend.png)
+#### Block markup in the frontend
+```
+<dl class="wp-block-lmt-description-list">
+	<dt>Apple</dt><dd>Apple is a company, not a fruit.</dd>
+	<dt>Banana</dt><dd>Banana is a yellow curved shaped fruit.</dd>
+	<dt>Pear</dt><dd>Pear is a shape you become if you eat donuts instead of fruit.</dd>
+</dl>
+```
 
-### Todo
+#### Todo
 - [ ] Better styles.
 - [ ] Add transforms rules so the block can be transformed into other blocks.
 - [ ] Other? [Create an issue / PR.](https://github.com/lassemt/wp-block-description-list/issues)
