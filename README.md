@@ -3,7 +3,7 @@ This is a WordpPress plugin for adding description list functionality to WordPre
 
 The plugin is still in the works, but is already ready to use in production.
 
-### Features
+## Features
 #### The descirption list block contains easy to use UI using gutenbergs default UI.
 ![Image of UI of block in backend](https://raw.githubusercontent.com/lassemt/wp-block-description-list/master/examples/example-backend.png)
 
