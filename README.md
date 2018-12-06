@@ -1,13 +1,13 @@
 # Description List WP Gutenberg Block
-This is a WordpPress plugin for adding description list functionality to WordPress's gutenberg editor.
+This is a WordPress plugin for adding description list functionality to WordPress's gutenberg editor.
 
-The plugin is still in the works, but is already ready to use in production.
+The plugin is still in the works, but it is already ready to use in production.
 
 ## Features
-#### The descirption list block contains easy to use UI using gutenbergs default UI.
+#### The description list block contains an easy to use UI using gutenbergs default UI.
 ![Image of UI of block in backend](https://raw.githubusercontent.com/lassemt/wp-block-description-list/master/examples/example-backend.png)
 
-#### How the block look in the frontend
+#### How the block looks in the frontend
 ![Image of block in frontend](https://raw.githubusercontent.com/lassemt/wp-block-description-list/master/examples/example-frontend.png)
 #### Block markup in the frontend
 ```
@@ -20,8 +20,8 @@ The plugin is still in the works, but is already ready to use in production.
 
 ## Todo
 - [ ] Better styles.
-- [ ] Add transforms rules so the block can be transformed into other blocks.
-- [ ] Other? [Create an issue / PR.](https://github.com/lassemt/wp-block-description-list/issues)
+- [ ] Add transform rules so the block can be transformed into other blocks.
+- [ ] More stuff? [Create an issue / PR.](https://github.com/lassemt/wp-block-description-list/issues)
 
 ---
 
