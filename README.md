@@ -21,7 +21,7 @@ The plugin is still in the works, but it is already ready to use in production.
 ## Todo
 - [ ] Better styles.
 - [ ] Add transform rules so the block can be transformed into other blocks.
-- [ ] Moret stuff? [Create an issue / PR.](https://github.com/lassemt/wp-block-description-list/issues)
+- [ ] More stuff? [Create an issue / PR.](https://github.com/lassemt/wp-block-description-list/issues)
 
 ---
 
