@@ -18,7 +18,7 @@ The plugin is still in the works, but is already ready to use in production.
 </dl>
 ```
 
-#### Todo
+## Todo
 - [ ] Better styles.
 - [ ] Add transforms rules so the block can be transformed into other blocks.
 - [ ] Other? [Create an issue / PR.](https://github.com/lassemt/wp-block-description-list/issues)
