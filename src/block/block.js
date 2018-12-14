@@ -11,13 +11,11 @@ const { Fragment } = wp.element;
 const { select, dispatch } = wp.data;
 
 // Import local dependencies
-import './list-term';
-import './list-description';
+import './list-item';
 
 // Constants
 const ALLOWED_BLOCKS = [
-	'lmt/description-list-term',
-	'lmt/description-list-description'
+	'lmt/description-list-item'
 ];
 
 
@@ -30,18 +28,19 @@ registerBlockType( 'lmt/description-list', {
 
   edit({ clientId }) {
     // Add Row
-    const onAddRow = type => {
+    const onAddRow = isTerm => {
       // Create a new block
-      const block = type === 'dt' ? createBlock('lmt/description-list-term') : createBlock('lmt/description-list-description');
+      const block = createBlock('lmt/description-list-item', {
+      	isTerm: isTerm
+      });
 
       // Insert the block
-      // TODO: Add position to insertion?
       dispatch('core/editor').insertBlock(block, undefined, clientId)
     }
 
     // Add block if no blocks already exist.
     if (! select('core/editor').getBlocksByClientId(clientId)[0].innerBlocks.length) {
-      onAddRow('dt');
+      onAddRow(true);
     }
 
     return (
@@ -53,7 +52,7 @@ registerBlockType( 'lmt/description-list', {
 
         <div className="DL__inserters">
 	        <button
-	          onClick={ () => { onAddRow('dt') } }
+	          onClick={ () => { onAddRow(true) } }
 	          className="DL__inserters__btn"
 	        >
 	          <Dashicon
@@ -63,7 +62,7 @@ registerBlockType( 'lmt/description-list', {
 	        </button>
 
 	        <button
-	          onClick={ () => { onAddRow('dd') } }
+	          onClick={ () => { onAddRow(false) } }
 	          className="DL__inserters__btn"
 	        >
 	          <Dashicon

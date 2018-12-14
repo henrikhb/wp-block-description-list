@@ -1,11 +1,11 @@
 .DL {
 
-	&__term {
-		font-weight: 700;
+	&__dt {
+		padding-left: 1em;
 	}
 
-	&__description {
-		margin: 0 1.5em 1.5em;
+	&__dd {
+		padding: 0 3em 1.5em;
 	}
 
 	&__inserters {
