@@ -7,6 +7,7 @@ const { Fragment } = wp.element;
 const { dispatch } = wp.data;
 
 // Constants
+// TODO: Shold this be allowed in dt?
 const ALLOWED_FORMATTING = [ 'link' ];
 
 // Register description list item
