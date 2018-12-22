@@ -6,7 +6,7 @@ import './editor.scss';
 const { __ } = wp.i18n;
 const { registerBlockType, createBlock } = wp.blocks;
 const { InnerBlocks, BlockControls } = wp.editor;
-const { Dashicon, Toolbar, ToolbarButton } = wp.components;
+const { Dashicon, Toolbar, ToolbarButton, Button, ButtonGroup } = wp.components;
 const { Fragment } = wp.element;
 const { select, dispatch } = wp.data;
 
@@ -50,27 +50,19 @@ registerBlockType( 'lmt/description-list', {
           templateLock="insert"
         />
 
-        <div className="DL__inserters">
-	        <button
-	          onClick={ () => { onAddRow(true) } }
-	          className="DL__inserters__btn"
-	        >
-	          <Dashicon
-	            icon={ 'plus' }
-	          />
-	          <span>{ __( 'Add term' ) }</span>
-	        </button>
+				<ButtonGroup>
+					<Button
+						isDefault
+						isLarge
+						onClick={ () => { onAddRow(true) } }
+					>{ __( 'Add term' ) }</Button>
 
-	        <button
-	          onClick={ () => { onAddRow(false) } }
-	          className="DL__inserters__btn"
-	        >
-	          <Dashicon
-	            icon={ 'plus' }
-	          />
-	          <span>{ __( 'Add description' ) }</span>
-	        </button>
-        </div>
+					<Button
+						isDefault
+						isLarge
+						onClick={ () => { onAddRow(false) } }
+					>{ __( 'Add description' ) }</Button>
+				</ButtonGroup>
       </Fragment>
     );
   },
