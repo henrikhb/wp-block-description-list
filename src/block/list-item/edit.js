@@ -88,8 +88,7 @@ export class DescriptionListItemEdit extends Component {
 export default compose(
 	withSelect( ( select, ownProps ) => {
 		const {
-			getBlock,
-			getBlocksByClientId
+			getBlock
 		} = select( 'core/editor' );
 
 		return {
