@@ -8,7 +8,8 @@ const { registerBlockType, createBlock } = wp.blocks;
 const { InnerBlocks, BlockControls } = wp.editor;
 const { Dashicon, Toolbar, ToolbarButton, Button, ButtonGroup } = wp.components;
 const { Fragment } = wp.element;
-const { select, dispatch, withSelect } = wp.data;
+const { withSelect, withDispatch } = wp.data;
+const { compose } = wp.compose;
 
 // Import local dependencies
 import './list-item';
@@ -26,31 +27,43 @@ registerBlockType( 'lmt/description-list', {
 	category: 'common',
 	keywords: [ __( 'description list' ) ],
 
-  edit: withSelect( (select, ownProps) => {
-  	const {
-  		hasSelectedInnerBlock
-  	} = select( 'core/editor' );
+  edit: compose(
+	  withSelect( (select, ownProps) => {
+	  	const {
+	  		hasSelectedInnerBlock,
+	  		getBlocksByClientId
+	  	} = select( 'core/editor' );
 
-    return {
-    	isParentOfSelectedBlock: hasSelectedInnerBlock( ownProps.clientId, true )
-    };
-  } ) ( ({ clientId, isSelected, isParentOfSelectedBlock }) => {
-    // Add Row
-    const onAddRow = isTerm => {
-      // Create a new block
-      const block = createBlock('lmt/description-list-item', {
-      	isTerm: isTerm
-      });
+	    return {
+	    	isParentOfSelectedBlock: hasSelectedInnerBlock( ownProps.clientId, true ),
+	    	hasBlocks: getBlocksByClientId(ownProps.clientId)[0].innerBlocks.length
+	    };
+	  } ),
 
-      // Insert the block
-      dispatch('core/editor').insertBlock(block, undefined, clientId)
-    }
+		withDispatch( (dispatch, ownProps) => {
+	  	const {
+	  		insertBlock
+	  	} = dispatch( 'core/editor' );
 
+	    return {
+	    	// Function for inserting new rows
+	    	onAddRow(isTerm) {
+		      // Create a new block
+		      const block = createBlock('lmt/description-list-item', {
+		      	isTerm: isTerm
+		      });
+
+		      insertBlock(block, undefined, ownProps.clientId);
+	    	}
+	    };
+		})
+  )( ({ clientId, isSelected, isParentOfSelectedBlock, hasBlocks, onAddRow }) => {
     // Add block if no blocks already exist.
-    if (! select('core/editor').getBlocksByClientId(clientId)[0].innerBlocks.length) {
+    if (! hasBlocks ) {
       onAddRow(true);
     }
 
+    // Inserter buttons
     const inserters = (isSelected || isParentOfSelectedBlock) && (
 			<ButtonGroup>
 				<Button
