@@ -1,17 +1,7 @@
 // Import dependencies
 const { __ } = wp.i18n;
-const { registerBlockType, switchToBlockType } = wp.blocks;
-const { InnerBlocks, BlockControls } = wp.editor;
-const { Toolbar, ToolbarButton, Path, SVG } = wp.components;
-const { Fragment } = wp.element;
-const { dispatch, select } = wp.data;
-
-// Constants
-const ALLOWED_BLOCKS = [
-	'core/paragraph',
-	'core/image',
-	'core/heading'
-];
+const { registerBlockType } = wp.blocks;
+const { InnerBlocks } = wp.editor;
 
 import DescriptionListItemEdit from './edit';
 
