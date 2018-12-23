@@ -5,8 +5,8 @@ import './editor.scss';
 // Import dependencies
 const { __ } = wp.i18n;
 const { registerBlockType, createBlock } = wp.blocks;
-const { InnerBlocks, BlockControls } = wp.editor;
-const { Dashicon, Toolbar, ToolbarButton, Button, ButtonGroup } = wp.components;
+const { InnerBlocks } = wp.editor;
+const { Button, ButtonGroup } = wp.components;
 const { Fragment } = wp.element;
 const { withSelect, withDispatch } = wp.data;
 const { compose } = wp.compose;
