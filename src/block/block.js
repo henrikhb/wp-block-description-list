@@ -8,7 +8,7 @@ const { registerBlockType, createBlock } = wp.blocks;
 const { InnerBlocks, BlockControls } = wp.editor;
 const { Dashicon, Toolbar, ToolbarButton, Button, ButtonGroup } = wp.components;
 const { Fragment } = wp.element;
-const { select, dispatch } = wp.data;
+const { select, dispatch, withSelect } = wp.data;
 
 // Import local dependencies
 import './list-item';
@@ -26,7 +26,15 @@ registerBlockType( 'lmt/description-list', {
 	category: 'common',
 	keywords: [ __( 'description list' ) ],
 
-  edit({ clientId }) {
+  edit: withSelect( (select, ownProps) => {
+  	const {
+  		hasSelectedInnerBlock
+  	} = select( 'core/editor' );
+
+    return {
+    	isParentOfSelectedBlock: hasSelectedInnerBlock( ownProps.clientId, true )
+    };
+  } ) ( ({ clientId, isSelected, isParentOfSelectedBlock }) => {
     // Add Row
     const onAddRow = isTerm => {
       // Create a new block
@@ -43,6 +51,22 @@ registerBlockType( 'lmt/description-list', {
       onAddRow(true);
     }
 
+    const inserters = (isSelected || isParentOfSelectedBlock) && (
+			<ButtonGroup>
+				<Button
+					isDefault
+					isLarge
+					onClick={ () => { onAddRow(true) } }
+				>{ __( 'Add term' ) }</Button>
+
+				<Button
+					isDefault
+					isLarge
+					onClick={ () => { onAddRow(false) } }
+				>{ __( 'Add description' ) }</Button>
+			</ButtonGroup>
+    );
+
     return (
       <Fragment>
         <InnerBlocks
@@ -50,22 +74,10 @@ registerBlockType( 'lmt/description-list', {
           templateLock="insert"
         />
 
-				<ButtonGroup>
-					<Button
-						isDefault
-						isLarge
-						onClick={ () => { onAddRow(true) } }
-					>{ __( 'Add term' ) }</Button>
-
-					<Button
-						isDefault
-						isLarge
-						onClick={ () => { onAddRow(false) } }
-					>{ __( 'Add description' ) }</Button>
-				</ButtonGroup>
+        { inserters }
       </Fragment>
     );
-  },
+  }),
 
   save() {
     return <dl><InnerBlocks.Content /></dl>;
