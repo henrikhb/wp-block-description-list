@@ -30,7 +30,6 @@ registerBlockType( 'lmt/description-list', {
 	  withSelect( (select, ownProps) => {
 	  	const {
 	  		hasSelectedInnerBlock,
-	  		getBlocksByClientId,
 	  		getBlock
 	  	} = select( 'core/editor' );
 
