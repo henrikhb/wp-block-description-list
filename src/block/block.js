@@ -19,7 +19,6 @@ const ALLOWED_BLOCKS = [
 	'lmt/description-list-item'
 ];
 
-
 registerBlockType( 'lmt/description-list', {
 	title: __( 'Description list' ),
 	description: __( 'Create a description list.' ),
@@ -31,12 +30,16 @@ registerBlockType( 'lmt/description-list', {
 	  withSelect( (select, ownProps) => {
 	  	const {
 	  		hasSelectedInnerBlock,
-	  		getBlocksByClientId
+	  		getBlocksByClientId,
+	  		getBlock
 	  	} = select( 'core/editor' );
+
+	  	// Get current block
+	  	const block = getBlock(ownProps.clientId);
 
 	    return {
 	    	isParentOfSelectedBlock: hasSelectedInnerBlock( ownProps.clientId, true ),
-	    	hasBlocks: getBlocksByClientId(ownProps.clientId)[0].innerBlocks.length
+	    	hasBlocks: block ? block.innerBlocks.length : false
 	    };
 	  } ),
 
