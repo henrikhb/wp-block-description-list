@@ -1,0 +1,16 @@
+{
+    "name": "wapbamboogie/wp-block-description-list",
+    "description": "A wordpress gutenberg block plugin for description lists.",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "wapbamboogie",
+            "email": "email@example.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "composer/installers": "~1.0"
+    }
+}
